@@ -42,7 +42,7 @@ contract SimpleBank {
         address accountAddress,
         uint withdrawAmount,
         uint newBalance
-      )
+      );
 
     //
     // Functions
@@ -72,10 +72,15 @@ contract SimpleBank {
         return msg.sender.balance;
     }
 
+    /*function getEnrolled() returns (bool) {
+
+    }*/
+
     /// @notice Enroll a customer with the bank
     /// @return The users enrolled status
     // Emit the appropriate event
     function enroll() public returns (bool){
+      enrolled[msg.sender] = true;
     }
 
     /// @notice Deposit ether into bank
