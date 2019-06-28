@@ -75,6 +75,10 @@ contract SimpleBank {
     /*function getEnrolled() returns (bool) {
 
     }*/
+    function getEnrolled() public view returns (bool) {
+        /* Get enrolled statu  */
+        return enrolled[msg.sender];
+    }
 
     /// @notice Enroll a customer with the bank
     /// @return The users enrolled status
