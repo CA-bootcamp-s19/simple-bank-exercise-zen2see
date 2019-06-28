@@ -118,7 +118,7 @@ contract SimpleBank {
              "The senders balance is at least thhe amoucnt they want to withdraw"
            );
            balances[msg.sender] -= withdrawAmount;
-           emit LogWithdrawal(msg.sender, withdrawAmount, balences[msg.sender]);
+           emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
            return balances[msg.sender];
     }
 
