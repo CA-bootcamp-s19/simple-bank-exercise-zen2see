@@ -114,7 +114,7 @@ contract SimpleBank {
            to the user attempting to withdraw.
            return the user's balance.*/
            require(
-             msg.sender.getBalance() >= withdrawAmount,
+             getBalance() >= withdrawAmount,
              "The senders balance is at least thhe amoucnt they want to withdraw"
            );
            balances[msg.sender] -= withdrawAmount;
