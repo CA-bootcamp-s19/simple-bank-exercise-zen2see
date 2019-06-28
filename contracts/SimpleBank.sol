@@ -69,7 +69,7 @@ contract SimpleBank {
     // allows function to run locally/off blockchain
     function getBalance() public view returns (uint) {
         /* Get the balance of the sender of this transaction */
-        return msg.sender.balance;
+        return balences[msg.sender];
     }
 
     /*function getEnrolled() returns (bool) {
@@ -80,7 +80,8 @@ contract SimpleBank {
     /// @return The users enrolled status
     // Emit the appropriate event
     function enroll() public returns (bool){
-      enrolled[msg.sender] = true;
+      emit LogEnrolled(msg.sender);
+      return enrolled[msg.sender];
     }
 
     /// @notice Deposit ether into bank
@@ -89,9 +90,17 @@ contract SimpleBank {
     // Use the appropriate global variables to get the transaction sender and value
     // Emit the appropriate event
     // Users should be enrolled before they can make deposits
-    function deposit() public returns (uint) {
+    function deposit() public payable returns (uint) {
         /* Add the amount to the user's balance, call the event associated with a deposit,
           then return the balance of the user */
+          require(
+            msg.sender.enroll() == true,
+            "User should be enrolled before they can make deposits"
+          );
+
+          balances[msg.sender] += msg.value;
+          emit LogDepositMade(msg.sender, msg.value);
+          return balences[msg.sender];
     }
 
     /// @notice Withdraw ether from bank
@@ -104,6 +113,13 @@ contract SimpleBank {
            Subtract the amount from the sender's balance, and try to send that amount of ether
            to the user attempting to withdraw.
            return the user's balance.*/
+           require(
+             msg.sender.getBalance() >= withdrawAmount,
+             "The senders balance is at least thhe amoucnt they want to withdraw"
+           );
+           balances[msg.sender] -= withdrawAmount;
+           emit LogWithdrawal(msg.sender, withdrawAmount, balences[msg.sender]);
+           return balences[msg.sender]
     }
 
 }
