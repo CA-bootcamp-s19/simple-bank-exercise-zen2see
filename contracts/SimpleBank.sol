@@ -69,7 +69,7 @@ contract SimpleBank {
     // allows function to run locally/off blockchain
     function getBalance() public view returns (uint) {
         /* Get the balance of the sender of this transaction */
-        return balences[msg.sender];
+        return balances[msg.sender];
     }
 
     /*function getEnrolled() returns (bool) {
@@ -100,7 +100,7 @@ contract SimpleBank {
 
           balances[msg.sender] += msg.value;
           emit LogDepositMade(msg.sender, msg.value);
-          return balences[msg.sender];
+          return balances[msg.sender];
     }
 
     /// @notice Withdraw ether from bank
@@ -119,7 +119,7 @@ contract SimpleBank {
            );
            balances[msg.sender] -= withdrawAmount;
            emit LogWithdrawal(msg.sender, withdrawAmount, balences[msg.sender]);
-           return balences[msg.sender];
+           return balances[msg.sender];
     }
 
 }
