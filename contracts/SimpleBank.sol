@@ -33,7 +33,7 @@ contract SimpleBank {
     /* Add 2 arguments for this event, an accountAddress and an amount */
     event LogDepositMade(
         address accountAddress,
-        string amount
+        uint amount
       );
 
     /* Create an event called LogWithdrawal */
