@@ -76,16 +76,16 @@ contract SimpleBank {
 
     }*/
     function getEnrolled() public view returns (bool) {
-        /* Get enrolled statu  */
-        return enrolled[msg.sender] == true;
+        /* Get enrolled status  */
+        return enrolled[msg.sender];
     }
 
     /// @notice Enroll a customer with the bank
     /// @return The users enrolled status
     // Emit the appropriate event
     function enroll() public returns (bool){
-      emit LogEnrolled(msg.sender);
       return enrolled[msg.sender];
+      emit LogEnrolled(msg.sender);
     }
 
     /// @notice Deposit ether into bank
