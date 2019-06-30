@@ -102,8 +102,8 @@ contract SimpleBank {
             "User should be enrolled before they can make deposits"
           );
 
-          balances[msg.sender] += msg.value;
-          emit LogDepositMade(msg.sender, msg.value);
+          newBalance = balances[msg.sender] += msg.value;
+          emit LogDepositMade(msg.sender, newBalance);
           return balances[msg.sender];
     }
 
@@ -119,7 +119,7 @@ contract SimpleBank {
            return the user's balance.*/
            require(
              getBalance() >= withdrawAmount,
-             "The senders balance is at least thhe amoucnt they want to withdraw"
+             "The senders balance is at least thhe amount they want to withdraw"
            );
            balances[msg.sender] -= withdrawAmount;
            emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
