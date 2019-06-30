@@ -102,8 +102,8 @@ contract SimpleBank {
             "User should be enrolled before they can make deposits"
           );
 
-          uint newBalance = balances[msg.sender] += msg.value;
-          emit LogDepositMade(msg.sender, newBalance);
+          balances[msg.sender] += msg.value;
+          emit LogDepositMade(msg.sender, msg.value);
           return balances[msg.sender];
     }
 
