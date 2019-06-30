@@ -103,7 +103,7 @@ contract SimpleBank {
           );
 
           balances[msg.sender] += msg.value;
-          emit LogDepositMade(msg.sender, msg.value);
+          emit LogDepositMade(msg.sender, web3.utilstoBN(msg.value));
           return balances[msg.sender];
     }
 
