@@ -77,7 +77,7 @@ contract SimpleBank {
     }*/
     function getEnrolled() public view returns (bool) {
         /* Get enrolled statu  */
-        return enrolled[msg.sender];
+        return enrolled[msg.sender] == true;
     }
 
     /// @notice Enroll a customer with the bank
