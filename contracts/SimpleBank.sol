@@ -33,7 +33,7 @@ contract SimpleBank {
     /* Add 2 arguments for this event, an accountAddress and an amount */
     event LogDepositMade(
         address accountAddress,
-        uint amount
+        string amountStr
       );
 
     /* Create an event called LogWithdrawal */
@@ -103,7 +103,9 @@ contract SimpleBank {
           );
 
           balances[msg.sender] += msg.value;
-          emit LogDepositMade(msg.sender, web3.utilstoBN(msg.value));
+          uint amount = msg.value;
+          string amountString = amount.toString();
+          emit LogDepositMade(msg.sender, amountString);
           return balances[msg.sender];
     }
 
