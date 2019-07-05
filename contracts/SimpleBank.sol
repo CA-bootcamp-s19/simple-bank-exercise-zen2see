@@ -99,10 +99,9 @@ contract SimpleBank {
         /* Add the amount to the user's balance, call the event associated with a deposit,
           then return the balance of the user */
           require(
-            enroll() == true,
+            enrolled([msg.sender] == true),
             "User should be enrolled before they can make deposits"
           );
-
           balances[msg.sender] += msg.value;
           emit LogDepositMade(msg.sender, msg.value);
           return balances[msg.sender];
